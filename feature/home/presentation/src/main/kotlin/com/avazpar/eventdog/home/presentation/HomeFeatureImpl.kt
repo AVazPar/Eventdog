@@ -1,6 +1,5 @@
 package com.avazpar.eventdog.home.presentation
 
-import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
@@ -13,8 +12,7 @@ class HomeFeatureImpl : HomeFeatureApi {
 
     override fun registerGraph(
         navGraphBuilder: NavGraphBuilder,
-        navController: NavHostController,
-        modifier: Modifier
+        navController: NavHostController
     ) {
         navGraphBuilder.composable(route) {
             HomeScreen(handleNavigation = ::handleNavigation)

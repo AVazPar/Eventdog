@@ -10,6 +10,7 @@ import com.avazpar.eventdog.home.presentation.HomeFeatureImpl
 import com.avazpar.eventdog.navigation.DependencyProvider
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen()
