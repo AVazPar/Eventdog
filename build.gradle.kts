@@ -41,6 +41,7 @@ plugins {
     id("nl.littlerobots.version-catalog-update") version "0.6.0"
     id("com.android.library") version "7.3.1" apply false
     id("org.jetbrains.kotlin.android") version "1.7.20" apply false
+    id("org.jetbrains.kotlin.jvm") version "1.7.20" apply false
 }
 
 apply("${project.rootDir}/buildscripts/toml-updater-config.gradle")

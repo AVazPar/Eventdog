@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.avazpar.designsystem.foundations.EventdogTheme
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
+
+    private val homeViewModel: HomeViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -20,7 +22,8 @@ class HomeFragment : Fragment() {
             setContent {
                 EventdogTheme {
                     HomeScreen(
-                        handleNavigation = ::handleNavigation
+                        handleNavigation = ::handleNavigation,
+                        viewModel = homeViewModel
                     )
                 }
             }

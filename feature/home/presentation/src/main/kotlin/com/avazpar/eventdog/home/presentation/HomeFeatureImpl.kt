@@ -15,7 +15,9 @@ class HomeFeatureImpl : HomeFeatureApi {
         navController: NavHostController
     ) {
         navGraphBuilder.composable(route) {
-            HomeScreen(handleNavigation = ::handleNavigation)
+            HomeScreen(
+                handleNavigation = ::handleNavigation
+            )
         }
     }
 
