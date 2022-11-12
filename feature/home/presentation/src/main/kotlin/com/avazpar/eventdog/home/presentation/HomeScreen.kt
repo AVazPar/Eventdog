@@ -31,8 +31,7 @@ private const val launchKey: String = "Home"
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
-    navigateToDetails: () -> Unit,
-    // handleNavigation: (HomeNavigation) -> Unit,
+    navigateToDetails: (String) -> Unit,
     viewModel: HomeViewModel = getViewModel()
 ) {
     val uiState: HomeUIState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -48,9 +47,7 @@ fun HomeScreen(
         content = {
             HomeContent(
                 eventList = uiState.eventList,
-                onItemClicked = {
-                    navigateToDetails()
-                },
+                navigateToDetails = navigateToDetails,
                 modifier = modifier.padding(it)
             )
         })
@@ -59,7 +56,7 @@ fun HomeScreen(
 @Composable
 fun HomeContent(
     eventList: List<DogEvent>,
-    onItemClicked: () -> Unit,
+    navigateToDetails: (String) -> Unit = {},
     modifier: Modifier = Modifier
 ) = LazyColumn(modifier = modifier) {
     item {
@@ -72,7 +69,7 @@ fun HomeContent(
         Spacer(modifier = Modifier.size(20.dp))
         Text(
             text = stringResource(id = R.string.home_title),
-            style = MaterialTheme.typography.titleLarge,
+            style = MaterialTheme.typography.titleMedium,
             color = Brown,
             modifier = Modifier.padding(10.dp),
         )
@@ -82,7 +79,7 @@ fun HomeContent(
         key = { event -> event.id }
     ) { event ->
         Spacer(modifier = Modifier.size(10.dp))
-        EventItem(post = event, navigateToDetails = { onItemClicked() })
+        EventItem(event = event, navigateToDetails = navigateToDetails)
     }
     item {
         Spacer(modifier = Modifier.size(10.dp))
@@ -91,7 +88,7 @@ fun HomeContent(
 
 @Composable
 fun EventItem(
-    post: DogEvent,
+    event: DogEvent,
     navigateToDetails: (String) -> Unit
 ) {
     Card(
@@ -100,7 +97,7 @@ fun EventItem(
     ) {
         Row(
             modifier = Modifier
-                .clickable(onClick = { navigateToDetails(post.id) })
+                .clickable(onClick = { navigateToDetails(event.id) })
         ) {
             EventImage(imageThumbId = R.drawable.post_3_thumb, modifier = Modifier.padding(16.dp))
             Column(
@@ -108,8 +105,8 @@ fun EventItem(
                     .weight(1f)
                     .padding(12.dp)
             ) {
-                EventTitle(title = post.title)
-                EventBody(body = post.subtitle)
+                EventTitle(title = event.title)
+                EventBody(body = event.subtitle)
             }
         }
     }
@@ -123,15 +120,13 @@ private fun HomeTopAppBar(
     scrollBehavior: TopAppBarScrollBehavior? =
         TopAppBarDefaults.enterAlwaysScrollBehavior(topAppBarState)
 ) {
-    val title = stringResource(id = R.string.home_title)
     CenterAlignedTopAppBar(
         colors = TopAppBarDefaults.mediumTopAppBarColors(containerColor = OrangeLight),
         title = {
             Image(
-                painter = painterResource(R.drawable.ic_jetnews_logo),
-                contentDescription = title,
-                contentScale = ContentScale.Fit,
-                modifier = Modifier.defaultMinSize()
+                painter = painterResource(R.drawable.ic_dog_logo),
+                contentDescription = stringResource(id = R.string.home_title),
+                modifier = Modifier.fillMaxWidth()
             )
         },
         scrollBehavior = scrollBehavior,
