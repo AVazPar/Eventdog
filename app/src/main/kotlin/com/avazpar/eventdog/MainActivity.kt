@@ -6,8 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import com.avazpar.designsystem.foundations.EventdogTheme
-import com.avazpar.eventdog.home.presentation.HomeFeatureImpl
-import com.avazpar.eventdog.navigation.DependencyProvider
+import com.avazpar.eventdog.navigation.AppContent
 
 class MainActivity : ComponentActivity() {
 
@@ -16,10 +15,6 @@ class MainActivity : ComponentActivity() {
         installSplashScreen()
 
         WindowCompat.setDecorFitsSystemWindows(window, true)
-
-        DependencyProvider.provideImpl(
-            homeFeatureApi = HomeFeatureImpl()
-        )
 
         setContent {
             EventdogTheme {

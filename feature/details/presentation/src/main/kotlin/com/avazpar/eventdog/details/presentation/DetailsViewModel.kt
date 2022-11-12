@@ -4,13 +4,8 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-sealed interface DetailsNavigation {
-    object ToBack : DetailsNavigation
-}
-
 data class DetailsUIState(
-    val title: String = "DETALLES",
-    val navigation: DetailsNavigation? = null
+    val title: String = "DETALLES"
 )
 
 class DetailsViewModel() : ViewModel() {

@@ -14,6 +14,6 @@ data class DogEvent(
     val id: String,
     val title: String,
     val subtitle: String,
-    @DrawableRes val imageId: Int,
-    @DrawableRes val imageThumbId: Int
+  //  @DrawableRes val imageId: Int,
+  //  @DrawableRes val imageThumbId: Int
 )

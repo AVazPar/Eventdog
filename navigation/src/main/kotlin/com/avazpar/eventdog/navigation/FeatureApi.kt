@@ -12,3 +12,6 @@ interface FeatureApi {
 interface HomeFeatureApi : FeatureApi {
     fun route(): String
 }
+interface DetailsFeatureApi: FeatureApi {
+    fun route(): String
+}

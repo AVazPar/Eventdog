@@ -11,15 +11,16 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavController
 import org.koin.androidx.compose.getViewModel
 
-private const val launchKey: String = "TicketNavigation"
+private const val launchKey: String = "DetailsScreen"
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLifecycleComposeApi::class)
 @Composable
 fun DetailsScreen(
     modifier: Modifier = Modifier,
-    handleNavigation: (DetailsNavigation) -> Unit,
+    navigateToHome: () -> Unit,
     viewModel: DetailsViewModel = getViewModel(),
 ) {
     val uiState: DetailsUIState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -30,12 +31,6 @@ fun DetailsScreen(
                 title = uiState.title,
                 modifier = modifier.padding(it)
             )
-
-            uiState.navigation?.let { navigation ->
-                LaunchedEffect(key1 = launchKey) {
-                    handleNavigation(navigation)//.also { viewModel.processNavigation() }
-                }
-            }
         })
 }
 

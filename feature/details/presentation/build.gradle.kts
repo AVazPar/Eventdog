@@ -47,17 +47,11 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
-
-    /*packagingOptions {
-        // Multiple dependency bring these files in. Exclude them to enable
-        // our test APK to build (has no effect on our AARs)
-        excludes += "/META-INF/AL2.0"
-        excludes += "/META-INF/LGPL2.1"
-    }*/
 }
 
 dependencies {
     implementation(project(":design-system"))
+    implementation(project(":navigation"))
 
     implementation(libs.navigation.fragment.ktx)
     implementation(libs.navigation.ui.ktx)
@@ -89,6 +83,7 @@ dependencies {
     implementation(libs.androidx.window)
 
     implementation(libs.google.android.material)
+    implementation(project(mapOf("path" to ":navigation")))
 
     androidTestImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.core)
