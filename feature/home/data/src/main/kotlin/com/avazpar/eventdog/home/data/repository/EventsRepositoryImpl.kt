@@ -13,4 +13,7 @@ class EventsRepositoryImpl(
 
     override fun getAllEvents(): Flow<List<DogEvent>> =
         remoteDataSource.getAllEvents()
+
+    override fun getEventDetails(id: String): Flow<DogEvent> =
+        remoteDataSource.getEventDetails(id = id)
 }

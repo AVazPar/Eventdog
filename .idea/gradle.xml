@@ -13,14 +13,14 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/design-system" />
             <option value="$PROJECT_DIR$/feature" />
-            <option value="$PROJECT_DIR$/feature/details" />
-            <option value="$PROJECT_DIR$/feature/details/di" />
-            <option value="$PROJECT_DIR$/feature/details/presentation" />
             <option value="$PROJECT_DIR$/feature/home" />
             <option value="$PROJECT_DIR$/feature/home/data" />
             <option value="$PROJECT_DIR$/feature/home/di" />
             <option value="$PROJECT_DIR$/feature/home/domain" />
             <option value="$PROJECT_DIR$/feature/home/presentation" />
+            <option value="$PROJECT_DIR$/feature/profile" />
+            <option value="$PROJECT_DIR$/feature/profile/di" />
+            <option value="$PROJECT_DIR$/feature/profile/presentation" />
             <option value="$PROJECT_DIR$/navigation" />
           </set>
         </option>

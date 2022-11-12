@@ -7,11 +7,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.avazpar.designsystem.foundations.EventdogTheme
-import com.avazpar.eventdog.details.presentation.DetailsScreen
 import com.avazpar.eventdog.home.presentation.HomeScreen
+import com.avazpar.eventdog.home.presentation.details.DetailsScreen
 
 @Composable
-fun AppContent() {
+fun EventDogNavHost() {
     EventdogTheme {
         val navController = rememberNavController()
         NavHost(

@@ -18,7 +18,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":feature:details:presentation"))
+    implementation(project(":feature:profile:presentation"))
 
     implementation(libs.koin)
     implementation(libs.koin.android)

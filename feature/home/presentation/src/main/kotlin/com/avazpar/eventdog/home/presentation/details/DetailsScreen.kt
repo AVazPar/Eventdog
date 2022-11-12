@@ -1,10 +1,11 @@
-package com.avazpar.eventdog.details.presentation
+package com.avazpar.eventdog.home.presentation.details
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -13,8 +14,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.avazpar.designsystem.foundations.Beige
 import com.avazpar.designsystem.foundations.Brown
 import com.avazpar.designsystem.foundations.OrangeLight
+import com.avazpar.eventdog.home.presentation.R
 import org.koin.androidx.compose.getViewModel
 
 private const val launchKey: String = "DetailsScreen"
@@ -28,12 +31,20 @@ fun DetailsScreen(
     viewModel: DetailsViewModel = getViewModel(),
 ) {
     val uiState: DetailsUIState by viewModel.uiState.collectAsStateWithLifecycle()
+
+    LaunchedEffect(key1 = launchKey) {
+        viewModel.onCreate(eventId)
+    }
+
     Scaffold(
+        containerColor = Beige,
         topBar = { DetailsTopAppBar(navigateToHome = { navigateToHome() }) },
         modifier = Modifier.fillMaxSize(),
         content = {
             DetailsContent(
-                title = uiState.title + " " + eventId,
+                title = uiState.title,
+                subtitle = uiState.subtitle,
+                body = uiState.body,
                 modifier = modifier.padding(it)
             )
         })
@@ -42,19 +53,33 @@ fun DetailsScreen(
 @Composable
 fun DetailsContent(
     title: String,
+    subtitle: String,
+    body: String,
     modifier: Modifier = Modifier
 ) = LazyColumn(modifier = modifier) {
     item {
         Image(
             painter = painterResource(R.drawable.cover_1),
-            contentDescription = "hola",
+            contentDescription = stringResource(id = R.string.details_title),
             contentScale = ContentScale.FillWidth,
             modifier = Modifier.fillMaxWidth()
         )
         Spacer(modifier = Modifier.size(20.dp))
         Text(
-            text = title,//stringResource(id = R.string.details.),
+            text = title,
             style = MaterialTheme.typography.titleLarge,
+            color = Brown,
+            modifier = Modifier.padding(10.dp),
+        )
+        Text(
+            text = subtitle,
+            style = MaterialTheme.typography.titleMedium,
+            color = Brown,
+            modifier = Modifier.padding(10.dp),
+        )
+        Text(
+            text = body,
+            style = MaterialTheme.typography.titleSmall,
             color = Brown,
             modifier = Modifier.padding(10.dp),
         )

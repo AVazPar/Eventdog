@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import com.avazpar.designsystem.foundations.EventdogTheme
-import com.avazpar.eventdog.navigation.AppContent
+import com.avazpar.eventdog.navigation.EventDogNavHost
 
 class MainActivity : ComponentActivity() {
 
@@ -18,7 +18,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             EventdogTheme {
-                AppContent()
+                EventDogNavHost()
             }
         }
     }

@@ -76,10 +76,10 @@ android {
 dependencies {
     implementation(project(":navigation"))
     implementation(project(":feature:home:di"))
-    implementation(project(":feature:details:di"))
+    implementation(project(":feature:profile:di"))
     implementation(project(":design-system"))
     implementation(project(":feature:home:presentation"))
-    implementation(project(":feature:details:presentation"))
+    implementation(project(":feature:profile:presentation"))
 
     val composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)

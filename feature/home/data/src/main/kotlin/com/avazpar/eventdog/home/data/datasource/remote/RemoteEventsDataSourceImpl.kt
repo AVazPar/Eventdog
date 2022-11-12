@@ -9,12 +9,15 @@ class RemoteEventsDataSourceImpl() : RemoteEventsDataSource{
         event1, event2, event3
     ))
 
+    override fun getEventDetails(id: String): Flow<DogEvent> = flowOf(event1)
+
 }
 
 val event1 = DogEvent(
     id = "ac552dcc1741",
     title = "Perrotón race",
     subtitle = "Run with your dog in Madrid",
+    body = "Run with your dog in Madrid Run with your dog in Madrid Run with your dog in Madrid Run with your dog in Madrid v Run with your dog in Madrid",
   //  imageId = R.drawable.post_3,
   //  imageThumbId = R.drawable.post_3_thumb
 )
@@ -23,7 +26,8 @@ val event2 = DogEvent(
     id = "ac552dcc1742",
     title = "Border collies in Aranjuez",
     subtitle = "Run with your dog in Madrid",
-   // imageId = R.drawable.post_3,
+    body = "Run with your dog in Madrid Run with your dog in Madrid Run with your dog in Madrid Run with your dog in Madrid v Run with your dog in Madrid",
+    // imageId = R.drawable.post_3,
    // imageThumbId = R.drawable.post_3_thumb
 )
 
@@ -31,6 +35,7 @@ val event3 = DogEvent(
     id = "ac552dcc1743",
     title = "Coffee with dogs",
     subtitle = "Run with your dog in Madrid",
-   // imageId = R.drawable.post_3,
+    body = "Run with your dog in Madrid Run with your dog in Madrid Run with your dog in Madrid Run with your dog in Madrid v Run with your dog in Madrid",
+    // imageId = R.drawable.post_3,
    // imageThumbId = R.drawable.post_3_thumb
 )
