@@ -1,4 +1,4 @@
-package com.avazpar.eventdog.home.presentation
+package com.avazpar.eventdog.home.presentation.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -23,6 +23,8 @@ import com.avazpar.designsystem.foundations.Beige
 import com.avazpar.designsystem.foundations.Brown
 import com.avazpar.designsystem.foundations.OrangeLight
 import com.avazpar.eventdog.home.domain.usecases.DogEvent
+import com.avazpar.eventdog.home.domain.usecases.DogEventCategory
+import com.avazpar.eventdog.home.presentation.R
 import org.koin.androidx.compose.getViewModel
 
 private const val launchKey: String = "Home"
@@ -31,7 +33,7 @@ private const val launchKey: String = "Home"
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
-    navigateToDetails: (String) -> Unit,
+    navigateToDetails: (Int) -> Unit,
     viewModel: HomeViewModel = getViewModel()
 ) {
     val uiState: HomeUIState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -56,7 +58,7 @@ fun HomeScreen(
 @Composable
 fun HomeContent(
     eventList: List<DogEvent>,
-    navigateToDetails: (String) -> Unit = {},
+    navigateToDetails: (Int) -> Unit = {},
     modifier: Modifier = Modifier
 ) = LazyColumn(modifier = modifier) {
     item {
@@ -89,7 +91,7 @@ fun HomeContent(
 @Composable
 fun EventItem(
     event: DogEvent,
-    navigateToDetails: (String) -> Unit
+    navigateToDetails: (Int) -> Unit
 ) {
     Card(
         colors = CardDefaults.cardColors(containerColor = OrangeLight),
@@ -99,7 +101,10 @@ fun EventItem(
             modifier = Modifier
                 .clickable(onClick = { navigateToDetails(event.id) })
         ) {
-            EventImage(imageThumbId = R.drawable.post_3_thumb, modifier = Modifier.padding(16.dp))
+            EventImage(
+                imageThumbId = getImageFromCategory(category = event.category),
+                modifier = Modifier.padding(16.dp)
+            )
             Column(
                 modifier = Modifier
                     .weight(1f)
@@ -133,3 +138,12 @@ private fun HomeTopAppBar(
         modifier = modifier
     )
 }
+
+private fun getImageFromCategory(category: DogEventCategory): Int =
+    when (category) {
+        DogEventCategory.SPORT -> R.drawable.cover_1
+        DogEventCategory.FOOD -> R.drawable.cover_2
+        DogEventCategory.HEALTH -> R.drawable.cover_3
+        DogEventCategory.SOCIAL -> R.drawable.cover_4
+        else -> R.drawable.cover_5
+    }

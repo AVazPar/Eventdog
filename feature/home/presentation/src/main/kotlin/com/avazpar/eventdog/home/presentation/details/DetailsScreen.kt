@@ -17,6 +17,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.avazpar.designsystem.foundations.Beige
 import com.avazpar.designsystem.foundations.Brown
 import com.avazpar.designsystem.foundations.OrangeLight
+import com.avazpar.eventdog.home.domain.usecases.DogEventCategory
 import com.avazpar.eventdog.home.presentation.R
 import org.koin.androidx.compose.getViewModel
 
@@ -45,6 +46,7 @@ fun DetailsScreen(
                 title = uiState.title,
                 subtitle = uiState.subtitle,
                 body = uiState.body,
+                category = uiState.category,
                 modifier = modifier.padding(it)
             )
         })
@@ -55,11 +57,12 @@ fun DetailsContent(
     title: String,
     subtitle: String,
     body: String,
+    category: DogEventCategory,
     modifier: Modifier = Modifier
 ) = LazyColumn(modifier = modifier) {
     item {
         Image(
-            painter = painterResource(R.drawable.cover_1),
+            painter = painterResource(getCoverFromCategory(category = category)),
             contentDescription = stringResource(id = R.string.details_title),
             contentScale = ContentScale.FillWidth,
             modifier = Modifier.fillMaxWidth()
@@ -101,7 +104,7 @@ private fun DetailsTopAppBar(
         navigationIcon = {
             IconButton(onClick = { navigateToHome() }) {
                 Icon(
-                    painter = painterResource(R.drawable.ic_jetnews_logo),
+                    painter = painterResource(R.drawable.ic_arrow_left),
                     contentDescription = title,
                     modifier = Modifier.defaultMinSize()
                 )
@@ -112,3 +115,13 @@ private fun DetailsTopAppBar(
         modifier = modifier
     )
 }
+
+
+private fun getCoverFromCategory(category: DogEventCategory): Int =
+    when(category){
+        DogEventCategory.SPORT -> R.drawable.cover_1
+        DogEventCategory.FOOD -> R.drawable.cover_2
+        DogEventCategory.HEALTH -> R.drawable.cover_3
+        DogEventCategory.SOCIAL -> R.drawable.cover_4
+        else -> R.drawable.cover_5
+    }

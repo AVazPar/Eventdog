@@ -1,10 +1,11 @@
-package com.avazpar.eventdog.home.presentation
+package com.avazpar.eventdog.home.presentation.home
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.avazpar.eventdog.home.domain.usecases.DogEvent
 import com.avazpar.eventdog.home.domain.usecases.GetAllDogEvents
+import com.avazpar.eventdog.home.presentation.R
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -29,14 +30,11 @@ class HomeViewModel(
 
     private fun getEventList() {
         viewModelScope.launch(CoroutineExceptionHandler { _, exception ->
-            exception.localizedMessage?.let { Log.e("CloseAccountViewModel", it) }
+            exception.localizedMessage?.let { Log.e("HomeViewModel", it) }
         }) {
             getAllDogEvents().collect { list ->
                 _uiState.update { it.copy(eventList = list) }
             }
         }
-    }
-
-    fun onItemClicked() {
     }
 }

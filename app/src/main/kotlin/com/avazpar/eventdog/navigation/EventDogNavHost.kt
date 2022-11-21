@@ -7,8 +7,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.avazpar.designsystem.foundations.EventdogTheme
-import com.avazpar.eventdog.home.presentation.HomeScreen
 import com.avazpar.eventdog.home.presentation.details.DetailsScreen
+import com.avazpar.eventdog.home.presentation.home.HomeScreen
 
 @Composable
 fun EventDogNavHost() {

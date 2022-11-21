@@ -3,6 +3,7 @@ package com.avazpar.eventdog.home.presentation.details
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.avazpar.eventdog.home.domain.usecases.DogEventCategory
 import com.avazpar.eventdog.home.domain.usecases.GetDogEventDetails
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,7 +14,8 @@ import kotlinx.coroutines.launch
 data class DetailsUIState(
     var title: String = "",
     var subtitle: String = "",
-    var body: String = ""
+    var body: String = "",
+    var category: DogEventCategory = DogEventCategory.FOOD
 )
 
 class DetailsViewModel(val getDogEventDetails: GetDogEventDetails) : ViewModel() {
@@ -34,7 +36,8 @@ class DetailsViewModel(val getDogEventDetails: GetDogEventDetails) : ViewModel()
                     it.copy(
                         title = dogEvent.title,
                         subtitle = dogEvent.subtitle,
-                        body = dogEvent.body
+                        body = dogEvent.body,
+                        category = dogEvent.category
                     )
                 }
             }

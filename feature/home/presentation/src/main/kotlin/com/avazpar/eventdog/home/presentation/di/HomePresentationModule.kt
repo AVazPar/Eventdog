@@ -1,7 +1,7 @@
 package com.avazpar.eventdog.home.presentation.di
 
 import com.avazpar.eventdog.home.presentation.details.DetailsViewModel
-import com.avazpar.eventdog.home.presentation.HomeViewModel
+import com.avazpar.eventdog.home.presentation.home.HomeViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

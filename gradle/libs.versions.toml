@@ -39,7 +39,7 @@ kotlin = "1.7.20"
 maps-compose = "2.5.3"
 material = "1.8.0-alpha01"
 # @keep
-minSdk = "21"
+minSdk = "23"
 okhttp = "4.10.0"
 # @pin Bump to latest after Espresso 3.5.0 goes stable (due to https://github.com/robolectric/robolectric/issues/6593)
 robolectric = "4.5.1"
