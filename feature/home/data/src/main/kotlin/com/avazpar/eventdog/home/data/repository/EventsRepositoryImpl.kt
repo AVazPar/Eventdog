@@ -35,6 +35,8 @@ class EventsRepositoryImpl(
                 )
             }
 
-    override fun getEventDetails(id: String): Flow<DogEvent> =
-        flowOf(remoteDataSource.getEventDetails(id = id))
+    override fun getEventDetails(eventId: Int): Flow<DogEvent> =
+        localDataSource.getEventDetails(eventId = eventId)
+        //flowOf(remoteDataSource.getEventDetails(id = id))
+
 }

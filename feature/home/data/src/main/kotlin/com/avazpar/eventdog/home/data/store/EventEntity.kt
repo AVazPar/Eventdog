@@ -16,7 +16,9 @@ data class EventEntity(
     @ColumnInfo(name = "subtitle")
     val subtitle: String,
     @ColumnInfo(name = "body")
-    val body: String
+    val body: String,
+    @ColumnInfo(name = "category")
+    val category: String
 )
 
 fun EventEntity.asExternalModel() = DogEvent(
@@ -24,12 +26,21 @@ fun EventEntity.asExternalModel() = DogEvent(
     title = title,
     subtitle = subtitle,
     body = body,
-    category = DogEventCategory.SOCIAL
+    category = getDogCategoryFromCategory(category = category)
 )
+
+fun getDogCategoryFromCategory(category: String) = when (category) {
+    "SPORT" -> DogEventCategory.SPORT
+    "SOCIAL" -> DogEventCategory.SOCIAL
+    "FOOD" -> DogEventCategory.FOOD
+    "HEALTH" -> DogEventCategory.HEALTH
+    else -> DogEventCategory.SPORT
+}
 
 fun DogEvent.asEntity() = EventEntity(
     eventId = id,
     title = title,
     subtitle = subtitle,
-    body = body
+    body = body,
+    category = category.name
 )

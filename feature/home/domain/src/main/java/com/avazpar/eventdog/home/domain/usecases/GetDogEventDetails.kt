@@ -7,6 +7,6 @@ import kotlinx.coroutines.flow.Flow
 class GetDogEventDetails(
     private val eventsRepository: EventsRepository
 ) {
-    operator fun invoke(eventId: String): Flow<DogEvent> =
+    operator fun invoke(eventId: Int): Flow<DogEvent> =
         eventsRepository.getEventDetails(eventId)
 }

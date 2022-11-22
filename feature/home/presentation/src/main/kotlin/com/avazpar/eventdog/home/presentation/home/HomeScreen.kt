@@ -24,8 +24,10 @@ import com.avazpar.designsystem.foundations.Brown
 import com.avazpar.designsystem.foundations.OrangeLight
 import com.avazpar.eventdog.home.domain.usecases.DogEvent
 import com.avazpar.eventdog.home.domain.usecases.DogEventCategory
+import com.avazpar.eventdog.home.presentation.*
 import com.avazpar.eventdog.home.presentation.R
 import org.koin.androidx.compose.getViewModel
+import java.util.*
 
 private const val launchKey: String = "Home"
 
@@ -58,7 +60,7 @@ fun HomeScreen(
 @Composable
 fun HomeContent(
     eventList: List<DogEvent>,
-    navigateToDetails: (Int) -> Unit = {},
+    navigateToDetails: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) = LazyColumn(modifier = modifier) {
     item {
@@ -111,7 +113,10 @@ fun EventItem(
                     .padding(12.dp)
             ) {
                 EventTitle(title = event.title)
-                EventBody(body = event.subtitle)
+                val date = event.subtitle.toDate(format = TIMESTAMP_ISO_STRING_PATTERN)
+                date?.let {
+                    EventBody(body = it.toFormatHourString())
+                }
             }
         }
     }
@@ -141,9 +146,9 @@ private fun HomeTopAppBar(
 
 private fun getImageFromCategory(category: DogEventCategory): Int =
     when (category) {
-        DogEventCategory.SPORT -> R.drawable.cover_1
-        DogEventCategory.FOOD -> R.drawable.cover_2
-        DogEventCategory.HEALTH -> R.drawable.cover_3
-        DogEventCategory.SOCIAL -> R.drawable.cover_4
-        else -> R.drawable.cover_5
+        DogEventCategory.SPORT -> R.drawable.small_1
+        DogEventCategory.FOOD -> R.drawable.small_2
+        DogEventCategory.HEALTH -> R.drawable.small_3
+        DogEventCategory.SOCIAL -> R.drawable.small_4
+        else -> R.drawable.small_5
     }

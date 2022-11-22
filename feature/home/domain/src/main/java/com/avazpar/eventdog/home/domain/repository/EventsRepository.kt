@@ -5,5 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface EventsRepository {
     suspend fun getAllEvents(): Flow<List<DogEvent>>
-    fun getEventDetails(id: String): Flow<DogEvent>
+    fun getEventDetails(eventId: Int): Flow<DogEvent>
 }

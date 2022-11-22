@@ -22,16 +22,15 @@ class DetailsViewModel(val getDogEventDetails: GetDogEventDetails) : ViewModel()
     private val _uiState = MutableStateFlow(DetailsUIState())
     val uiState = _uiState.asStateFlow()
 
-    fun onCreate(eventId: String) {
+    fun onCreate(eventId: Int) {
         getDetails(eventId = eventId)
     }
 
-    private fun getDetails(eventId: String) {
+    private fun getDetails(eventId: Int) {
         viewModelScope.launch(CoroutineExceptionHandler { _, exception ->
             exception.localizedMessage?.let { Log.e("DetailsViewModel", it) }
         }) {
-
-            getDogEventDetails(eventId = eventId).collect{ dogEvent ->
+            getDogEventDetails(eventId = eventId).collect { dogEvent ->
                 _uiState.update {
                     it.copy(
                         title = dogEvent.title,

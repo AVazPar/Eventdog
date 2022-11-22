@@ -4,6 +4,6 @@ import com.avazpar.eventdog.home.domain.usecases.DogEvent
 import kotlinx.coroutines.flow.Flow
 
 interface RemoteEventsDataSource {
-    fun getAllEvents(): List<DogEvent>
+    suspend fun getAllEvents(): List<DogEvent>
     fun getEventDetails(id: String): DogEvent
 }

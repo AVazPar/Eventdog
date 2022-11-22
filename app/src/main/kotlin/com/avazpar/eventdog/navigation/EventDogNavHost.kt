@@ -21,7 +21,7 @@ fun EventDogNavHost() {
             composable(route = Screens.Home.route) {
                 HomeScreen(
                     navigateToDetails = { eventId ->
-                        navController.navigate("details/$eventId")
+                        navController.navigate("details/${eventId}")
                     }
                 )
             }
@@ -29,12 +29,12 @@ fun EventDogNavHost() {
                 route = Screens.Details.route,
                 arguments = listOf(
                     navArgument("eventId"){
-                        type = NavType.StringType
+                        type = NavType.IntType
                     }
                 )
             ) {
                 DetailsScreen(
-                    eventId = it.arguments?.getString("eventId")!!,
+                    eventId = it.arguments?.getInt("eventId") ?: 0,
                     navigateToHome = {
                         navController.popBackStack()
                     }

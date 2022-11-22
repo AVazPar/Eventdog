@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="home_title">Events for our dogs</string>
+    <string name="home_title">Events for today</string>
     <string name="home_body">Home body</string>
     <string name="details_title">Details</string>
 </resources>

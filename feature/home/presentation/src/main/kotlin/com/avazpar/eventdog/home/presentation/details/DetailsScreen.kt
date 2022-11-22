@@ -14,10 +14,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.avazpar.designsystem.atoms.EventBody
 import com.avazpar.designsystem.foundations.Beige
 import com.avazpar.designsystem.foundations.Brown
 import com.avazpar.designsystem.foundations.OrangeLight
 import com.avazpar.eventdog.home.domain.usecases.DogEventCategory
+import com.avazpar.eventdog.home.presentation.*
 import com.avazpar.eventdog.home.presentation.R
 import org.koin.androidx.compose.getViewModel
 
@@ -26,7 +28,7 @@ private const val launchKey: String = "DetailsScreen"
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLifecycleComposeApi::class)
 @Composable
 fun DetailsScreen(
-    eventId: String,
+    eventId: Int,
     modifier: Modifier = Modifier,
     navigateToHome: () -> Unit,
     viewModel: DetailsViewModel = getViewModel(),
@@ -74,12 +76,21 @@ fun DetailsContent(
             color = Brown,
             modifier = Modifier.padding(10.dp),
         )
-        Text(
-            text = subtitle,
-            style = MaterialTheme.typography.titleMedium,
-            color = Brown,
-            modifier = Modifier.padding(10.dp),
-        )
+        val date = subtitle.toDate(format = TIMESTAMP_ISO_STRING_PATTERN)
+        date?.let {
+            Text(
+                text = "Day: " + it.toFormatDateString(),
+                style = MaterialTheme.typography.titleMedium,
+                color = Brown,
+                modifier = Modifier.padding(start = 10.dp),
+            )
+            Text(
+                text = "Hour: " + it.toFormatHourString(),
+                style = MaterialTheme.typography.titleMedium,
+                color = Brown,
+                modifier = Modifier.padding(start = 10.dp),
+            )
+        }
         Text(
             text = body,
             style = MaterialTheme.typography.titleSmall,
