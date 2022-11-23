@@ -8,7 +8,6 @@ import com.avazpar.eventdog.home.data.store.asExternalModel
 import com.avazpar.eventdog.home.domain.repository.EventsRepository
 import com.avazpar.eventdog.home.domain.usecases.DogEvent
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 
@@ -37,6 +36,4 @@ class EventsRepositoryImpl(
 
     override fun getEventDetails(eventId: Int): Flow<DogEvent> =
         localDataSource.getEventDetails(eventId = eventId)
-        //flowOf(remoteDataSource.getEventDetails(id = id))
-
 }

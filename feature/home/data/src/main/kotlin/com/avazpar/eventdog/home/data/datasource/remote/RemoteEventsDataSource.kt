@@ -5,5 +5,4 @@ import kotlinx.coroutines.flow.Flow
 
 interface RemoteEventsDataSource {
     suspend fun getAllEvents(): List<DogEvent>
-    fun getEventDetails(id: String): DogEvent
 }

@@ -35,5 +35,5 @@ fun getDogCategoryFromType(type: String) = when(type){
     "concert" -> DogEventCategory.SOCIAL
     "theater" -> DogEventCategory.FOOD
     "family" -> DogEventCategory.HEALTH
-    else -> DogEventCategory.SPORT
+    else -> DogEventCategory.SOCIAL
 }
