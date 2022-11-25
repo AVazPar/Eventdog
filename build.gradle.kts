@@ -26,6 +26,7 @@ buildscript {
     dependencies {
         classpath(libs.android.gradlePlugin)
         classpath(libs.kotlin.gradlePlugin)
+        classpath ("app.cash.paparazzi:paparazzi-gradle-plugin:1.1.0")
     }
 }
 
